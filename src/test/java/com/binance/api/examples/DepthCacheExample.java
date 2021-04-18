@@ -5,6 +5,7 @@ import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
 import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.domain.event.DepthEvent;
+import com.binance.api.client.domain.market.DepthEventRate;
 import com.binance.api.client.domain.market.OrderBook;
 import com.binance.api.client.domain.market.OrderBookEntry;
 
@@ -83,7 +84,7 @@ public class DepthCacheExample {
     final List<DepthEvent> pendingDeltas = new CopyOnWriteArrayList<>();
     wsCallback.setHandler(pendingDeltas::add);
 
-    this.webSocket = wsClient.onDepthEvent(symbol.toLowerCase(), wsCallback);
+    this.webSocket = wsClient.onDepthEvent(symbol.toLowerCase(), DepthEventRate.RATE_1000MS, wsCallback);
 
     return pendingDeltas;
   }

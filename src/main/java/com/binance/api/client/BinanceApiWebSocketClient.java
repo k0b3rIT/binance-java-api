@@ -2,6 +2,7 @@ package com.binance.api.client;
 
 import com.binance.api.client.domain.event.*;
 import com.binance.api.client.domain.market.CandlestickInterval;
+import com.binance.api.client.domain.market.DepthEventRate;
 
 import java.io.Closeable;
 import java.util.List;
@@ -18,7 +19,7 @@ public interface BinanceApiWebSocketClient extends Closeable {
      * @param callback the callback to call on new events
      * @return a {@link Closeable} that allows the underlying web socket to be closed.
      */
-    Closeable onDepthEvent(String symbols, BinanceApiCallback<DepthEvent> callback);
+    Closeable onDepthEvent(String symbols, DepthEventRate eventRate, BinanceApiCallback<DepthEvent> callback);
 
     /**
      * Open a new web socket to receive {@link CandlestickEvent candlestickEvents} on a callback.
